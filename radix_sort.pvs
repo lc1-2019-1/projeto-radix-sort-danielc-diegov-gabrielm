@@ -162,7 +162,18 @@ MEASURE length(l)
   radix_sort_d_sort   : CONJECTURE 
    FORALL(l : list[nat], k : nat, d:nat | d <= k) :
      is_sorted_ud?(l,d) =>
-        is_sorted_ud?(radixsort(l, k, d), k+1) 
+        is_sorted_ud?(radixsort(l, k, d), k+1)
+
+% max_digits of a list of naturals is enough to consider all numbers 
+% in the list by all their digits. 
+  rem_max_digits : LEMMA
+  FORALL(l : list[nat] | length(l) >= 1, i : below[length(l)]):
+  rem(10^max_digits(l))(nth(l,i)) = nth(l,i)
+
+% radixsort permutes (preserves) data.
+  radixsort_permutes2 : LEMMA
+  FORALL(l : list[nat]):
+  permutations(l,radixsort(l))
 
 %**************************************************************
 %*** QUESTION 02
@@ -176,16 +187,7 @@ MEASURE length(l)
   FORALL(l : list[nat], k : nat, d : nat | d <=k):
   permutations(l, radixsort(l,k,d))
 
-% max_digits of a list of naturals is enough to consider all numbers 
-% in the list by all their digits. 
-  rem_max_digits : LEMMA
-  FORALL(l : list[nat] | length(l) >= 1, i : below[length(l)]):
-  rem(10^max_digits(l))(nth(l,i)) = nth(l,i)
 
-% radixsort permutes (preserves) data.
-  radixsort_permutes2 : LEMMA
-  FORALL(l : list[nat]):
-  permutations(l,radixsort(l))
 
 
 %************************************************************
