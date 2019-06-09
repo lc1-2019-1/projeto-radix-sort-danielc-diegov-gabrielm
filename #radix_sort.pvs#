@@ -183,7 +183,7 @@ MEASURE length(l)
 %*** merge_sort and transitivity of permutations.
 %**************************************************************
 % radixsort from the dth until the kth digit permutes (preserves) data.
- Radixsort_permutes : CONJECTURE
+ radixsort_permutes : CONJECTURE
   FORALL(l : list[nat], k : nat, d : nat | d <=k):
   permutations(l, radixsort(l,k,d))
 
